@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-    resources :books, except: [:destroy]
+  get 'finished_books/index'
+
+    resources :books
+    resources :finished_books
 end
