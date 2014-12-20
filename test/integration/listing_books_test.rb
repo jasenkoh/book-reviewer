@@ -8,7 +8,7 @@ class ListingBooksTest < ActionDispatch::IntegrationTest
     @scifi.books.create!(title: "Ender's Game", rating: 3)
   end
 
-  test 'listing books'do
+  test 'listing books' do
     get '/api/books'
 
     assert_equal 200, response.status
