@@ -20,6 +20,6 @@ class ListingFinishedBooksTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::XML, response.content_type
 
-    assert_equal 1, Hash.from_xml(response.body)['books'].size
+    assert_equal 1, Hash.from_xml(response.body).size
   end
 end
