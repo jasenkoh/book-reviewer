@@ -1,7 +1,7 @@
 (function () {
   var app = angular.module('bookApp', ['ngRoute', 'templates']);
 
-  app.config(function ($routeProvider, $locationProvider) {
+  app.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         controller: 'BooksCtrl',
