@@ -43,7 +43,7 @@ gem "active_model_serializers", github: "rails-api/active_model_serializers", br
 # Use debugger
 #gem 'byebug', group: [:development, :test]
 gem 'rails_12factor', group: :production
-gem 'bower-rails'
+gem 'angularjs-rails'
 gem 'angular-rails-templates'
 
 ruby "2.1.5"
