@@ -28,6 +28,7 @@ class BooksController < ApplicationController
 
   def book_params
     #implement strong params in separate method
-    params.require(:book).permit([:title, :rating])
+    params.require(:book).permit([:title, :rating, :author,
+                            :genre_id, :review, :amazon_id])
   end
 end

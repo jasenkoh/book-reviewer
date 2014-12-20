@@ -29,6 +29,8 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
+
+gem "active_model_serializers", github: "rails-api/active_model_serializers", branch: "0-8-stable"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -39,5 +41,5 @@ end
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 
