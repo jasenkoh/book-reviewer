@@ -6,13 +6,13 @@ class DeleteBookTest < ActionDispatch::IntegrationTest
   end
 
  test 'delete existing book' do
-  delete "/books/#{@book.id}"
+  delete "/api/books/#{@book.id}"
 
   assert_equal 204, response.status
  end
 
  test 'does not delete missing book' do
-  delete '/books/5555'
+  delete '/api/books/5555'
 
   assert_equal 404, response.status
  end
