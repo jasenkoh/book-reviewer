@@ -1,10 +1,16 @@
 == README
 
-App is using PostgreSQL database
+- Ruby: 2.1.5
+- Rails Version: 4.2
+- Databse: PostgreSQL
 
 
 <code> 
-rake db:migrate 
+rake db:setup 
+</code>
+
+<code> 
+rake db:seed 
 </code>
 
 <code> 
