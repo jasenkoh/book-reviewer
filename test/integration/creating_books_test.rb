@@ -1,12 +1,16 @@
 require 'test_helper'
 
 class CreatingBooksTest < ActionDispatch::IntegrationTest
+  setup do
+    @genre = Genre.create!(name: 'SF')
+  end
+
   test 'create new book with valid data' do
     post '/api/books', { book: {
       title: 'Pragmatic programmer',
       rating: 5,
       author: 'Dave',
-      genre_id: 1,
+      genre_id: @genre.id,
       review: 'Excellent one',
       amazon_id: '123123'
       }}.to_json,
@@ -21,7 +25,7 @@ class CreatingBooksTest < ActionDispatch::IntegrationTest
     assert_equal 'Pragmatic programmer', book[:title]
     assert_equal 5, book[:rating].to_i
     assert_equal 'Dave', book[:author]
-    assert_equal 1, book[:genre_id]
+    assert_equal @genre.id, book[:genre_id]
     assert_equal 'Excellent one', book[:review]
     assert_equal '123123', book[:amazon_id]
   end
