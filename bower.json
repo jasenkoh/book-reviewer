@@ -4,6 +4,9 @@
         "dependencies": {
             "angular": "latest",
             "angular-route": "latest"
+        },
+        "scripts": {
+            "postinstall": "./node_modules/bower/bin/bower install"
         }
     },
   "vendor": {
