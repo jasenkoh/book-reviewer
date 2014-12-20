@@ -6,6 +6,10 @@
 
 
 <code> 
+bundle
+</code>
+
+<code> 
 rake db:setup 
 </code>
 
