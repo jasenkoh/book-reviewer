@@ -14,7 +14,7 @@ class ListingBooksTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
 
-    books = json(response.body)[:books]
+    books = json(response.body)
     assert_equal Book.count, books.size
 
     book = Book.find(books.first[:id])
