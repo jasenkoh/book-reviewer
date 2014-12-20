@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'home#index'
+
   get 'finished_books/index'
 
   namespace :api do
