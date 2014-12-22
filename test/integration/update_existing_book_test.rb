@@ -8,13 +8,13 @@ class UpdateExistingBookTest < ActionDispatch::IntegrationTest
   end
 
   test 'update existing book' do
-    put "/api/books/#{@book.id}", { book: {
+    put "/api/books/#{@book.id}", {
       title: 'The Devil in the White City',
       rating: 5,
       author: 'Dave',
       review: 'Excellent one',
       amazon_id: '123123'
-      }}.to_json,
+      }.to_json,
       { 'Accept' => 'application/json',
         'Content-Type' => 'application/json' }
 
@@ -31,14 +31,14 @@ class UpdateExistingBookTest < ActionDispatch::IntegrationTest
   end
 
   test 'add genres to existing book' do
-    put "/api/books/#{@book.id}", { book: {
+    put "/api/books/#{@book.id}", {
       title: 'The Devil in the White City',
       rating: 5,
       author: 'Dave',
       review: 'Excellent one',
       amazon_id: '123123',
       genre_ids: [@genre.id, @genre1.id]
-      }}.to_json,
+      }.to_json,
       { 'Accept' => 'application/json',
         'Content-Type' => 'application/json' }
 

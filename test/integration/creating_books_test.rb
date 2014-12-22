@@ -6,14 +6,14 @@ class CreatingBooksTest < ActionDispatch::IntegrationTest
   end
 
   test 'create new book with valid data' do
-    post '/api/books', { book: {
+    post '/api/books', {
       title: 'Pragmatic programmer',
       rating: 3,
       author: 'Dave',
       review: 'Excellent one',
       amazon_id: '123123',
       genre_ids: [@genre.id]
-      }}.to_json,
+      }.to_json,
       { 'Accept' => 'application/json',
         'Content-Type' => 'application/json' }
 

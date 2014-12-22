@@ -5,6 +5,11 @@
     $scope.message = "Create new review";
 
     $scope.saveReview = function() {
+      $scope.book.genre_ids = [];
+      angular.forEach($scope.book.genres, function(genre, key) {
+        $scope.book.genre_ids.push(genre.id);
+      });
+
       booksFactory.saveBook($scope.book);
     };
   };

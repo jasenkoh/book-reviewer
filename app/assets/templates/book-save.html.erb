@@ -19,7 +19,7 @@
 
       <p>{{book.review || "No review yet."}}</p>
 
-      <book-genres genres="genres"></book-genres>
+      <book-genres genres="book.genres"></book-genres>
     </div>
   </section>
 
@@ -72,8 +72,10 @@
       <label class="control-label col-sm-2" >Genre:</label>
       <div class="genre">
         <label ng-repeat="genre in genres" for="{{genre.name}}" class="genre-label form-control">
-          <input type="checkbox" name="genre" id="{{genre.name}}" ng-model="book.genres[genre]" />
+          <input type="checkbox" name="{{genre.name}}" id="{{genre.name}}" checklist-model="book.genres" checklist-value="genre" />
           {{genre.name}}
+          <label>
+        </label>
         </label>
       </div>
     </fieldset>

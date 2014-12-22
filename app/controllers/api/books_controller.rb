@@ -18,10 +18,10 @@ module Api
     end
 
     def update
-      book = Book.find_by_id(params[:id])
-      if book
-          book.update_attributes(book_params);
-          render json: book, status: 200
+      @book = Book.find_by_id(params[:id])
+      if @book
+        @book.update_attributes(book_params);
+        render json: @book, status: 200
       else
         render nothing: true, status: 404
       end
@@ -39,7 +39,11 @@ module Api
 
     def book_params
       #implement strong params in separate method
-      params.require(:book).permit([ :id, :title, :rating, :author, :review, :amazon_id, :genre_ids => []])
+      permit = params.require(:book).permit([ :id, :title, :rating, :author, :review, :amazon_id])
+      if request[:genre_ids]
+        permit[:genre_ids] = request[:genre_ids]
+      end
+      permit
     end
   end
 end

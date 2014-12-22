@@ -2,7 +2,8 @@
   var app = angular.module('bookApp', ['ngRoute',
     'ngResource',
     'ui.router',
-    'templates']);
+    'templates',
+    'checklist-model']);
 
   app.config(function ($routeProvider) {
     $routeProvider.when('/', {
