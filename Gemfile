@@ -41,7 +41,7 @@ gem "active_model_serializers", github: "rails-api/active_model_serializers", br
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-#gem 'byebug', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 gem 'rails_12factor', group: :production
 gem 'angularjs-rails'
 gem 'angular-rails-templates'

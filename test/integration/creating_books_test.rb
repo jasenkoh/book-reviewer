@@ -8,11 +8,11 @@ class CreatingBooksTest < ActionDispatch::IntegrationTest
   test 'create new book with valid data' do
     post '/api/books', { book: {
       title: 'Pragmatic programmer',
-      rating: 5,
+      rating: 3,
       author: 'Dave',
-      genre_id: @genre.id,
       review: 'Excellent one',
-      amazon_id: '123123'
+      amazon_id: '123123',
+      genre_ids: [@genre.id]
       }}.to_json,
       { 'Accept' => 'application/json',
         'Content-Type' => 'application/json' }
@@ -23,13 +23,15 @@ class CreatingBooksTest < ActionDispatch::IntegrationTest
     assert_equal api_book_url(book[:id]), response.location
 
     assert_equal 'Pragmatic programmer', book[:title]
-    assert_equal 5, book[:rating].to_i
+    assert_equal 3, book[:rating].to_i
     assert_equal 'Dave', book[:author]
-    assert_equal @genre.id, book[:genre_id]
     assert_equal 'Excellent one', book[:review]
     assert_equal '123123', book[:amazon_id]
-  end
 
+    genre = book[:genres][0]
+    assert_equal @genre.id, genre[:id]
+    assert_equal @genre.name, genre[:name]
+  end
 
   test 'does not create new book with invalid data' do
     post '/api/books', { book: {
