@@ -1,15 +1,14 @@
 (function () {
-
-  var genresFactory = function($http) {
+  var genresFactory = function($resource) {
     var factory = {};
 
     factory.getGenres = function () {
-      $http.get('/api/genres');
+      return $resource('/api/genres').query();
     };
 
     return factory;
   };
 
-  genresFactory.$inject = ['$http'];
+  genresFactory.$inject = ['$resource'];
   angular.module('bookApp').factory('genresFactory', genresFactory);
 }());

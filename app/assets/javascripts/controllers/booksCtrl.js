@@ -1,16 +1,9 @@
 (function () {
-  var BooksCtrl = function($scope, booksFactory) {
-    $scope.book = 'Welcome to book reviewer '
-    booksFactory.getBooks()
-      .success(function (books){
-        $scope.books = books;
-      })
-      .error(function (data, status){
-        alert(status);
-        console.log(data);
-      });
+  var BooksCtrl = function($scope, books) {
+    $scope.review = 'Create Review';
+    $scope.books = books;
   };
 
-  BooksCtrl.$inject = ['$scope', 'booksFactory'];
+  BooksCtrl.$inject = ['$scope', 'books'];
   angular.module('bookApp').controller('BooksCtrl', BooksCtrl);
 }());
