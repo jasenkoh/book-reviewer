@@ -8,12 +8,7 @@
   app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         controller: 'BooksCtrl',
-        templateUrl: 'books.html',
-        resolve: {
-          books: ['booksFactory', function(booksFactory){
-            return booksFactory.getBooks();
-          }]
-        }
+        templateUrl: 'books.html'
       })
       .when('/authors', {
         controller: 'AuthorsCtrl',
@@ -22,15 +17,12 @@
 
       .when('/books/new', {
         controller: 'BooksSaveCtrl',
-        templateUrl: 'book-save.html',
-        resolve: {
-          book: [function() {
-            return {};
-          }],
-          genres: ['genresFactory', function(genresFactory) {
-            return genresFactory.getGenres();
-          }]
-        }
+        templateUrl: 'book-save.html'
+      })
+
+      .when('/books/edit/:id', {
+        controller: 'BooksSaveCtrl',
+        templateUrl: 'book-save.html'
       })
       .otherwise({ redirectTo: '/' });
       })

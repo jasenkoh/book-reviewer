@@ -1,4 +1,4 @@
- <h1>{{ message }}</h1>
+ <h1 ng-cloak>{{ message }}</h1>
 <form name="reviewForm" class="form-horizontal" ng-submit="saveReview()">
 
   <section class="row well live-preview" ng-show="book.amazon_id">
@@ -43,7 +43,7 @@
     <fieldset class="form-group">
     <label class="control-label col-sm-2" for="author">Author</label>
     <span class="col-sm-9">
-      <input type="text" id="author" class="form-control" required ng-model="book.author"
+      <input type="text" id="author" class="form-control" ng-model="book.author"
       placeholder="Name of the Author"></span>
     </fieldset>
 
@@ -82,8 +82,19 @@
 
     <fieldset class="form-group">
       <span class="col-sm-9 col-sm-offset-2 button-from-hell">
-        <button class="btn btn-primary">Save Review</button>
+        <button class="btn btn-primary">Save book</button>
+        <button class="btn btn-danger" style="margin-right:10px;" ng-click="deleteBook(book)" type="button" ng-show="showDeleteButton">Delete book</button>
       </span>
     </fieldset>
+    <div class="alert alert-success alert-dismissible" role="alert" ng-show="showSuccess">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> {{successMessage}}
+    </div>
+    <div class="alert alert-warning alert-dismissible" role="alert" ng-show="showError">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span></button>
+        <strong>Warning!</strong> Something went wrong, please try again.
+    </div>
   </div>
 </form>

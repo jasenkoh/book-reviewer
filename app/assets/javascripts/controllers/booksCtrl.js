@@ -1,9 +1,9 @@
 (function () {
-  var BooksCtrl = function($scope, books) {
-    $scope.review = 'Create Review';
-    $scope.books = books;
+  var BooksCtrl = function($scope, booksFactory) {
+    $scope.review = 'Create New Book';
+    $scope.books = booksFactory.getBooks();
   };
 
-  BooksCtrl.$inject = ['$scope', 'books'];
+  BooksCtrl.$inject = ['$scope', 'booksFactory'];
   angular.module('bookApp').controller('BooksCtrl', BooksCtrl);
 }());

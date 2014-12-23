@@ -7,17 +7,23 @@
     };
 
     factory.getBook = function(bookId) {
-      return $resource('/api/books/' + bookId).query();
-    }
+      return $resource('/api/books/' + bookId).get();
+    };
+
+    factory.updateBook =  function(book) {
+      return $resource('/api/books/' + book.id, null, { 'update': {
+        method: 'PUT'
+      }}).update(book).$promise;
+    };
 
     factory.saveBook = function(book) {
-      $resource('/api/books').save(book).$promise.then(function (response) {
-        $location.path('/');
-      }), function (error) {
-        console.log(error);
-        alert('Unable to save');
-      };
+      return $resource('/api/books').save(book).$promise;
+    };
+
+    factory.deleteBook = function(bookId) {
+      return $resource('/api/books/' + bookId).delete().$promise;
     }
+
     return factory;
   };
 

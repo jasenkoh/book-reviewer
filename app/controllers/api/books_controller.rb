@@ -17,11 +17,20 @@ module Api
       end
     end
 
+    def show
+      book = Book.find_by_id(params[:id])
+      if book
+        render json: book, status: 200
+      else
+        render nothing: true, status: 404
+      end
+    end
+
     def update
-      @book = Book.find_by_id(params[:id])
-      if @book
-        @book.update_attributes(book_params);
-        render json: @book, status: 200
+      book = Book.find_by_id(params[:id])
+      if book
+        book.update_attributes(book_params);
+        render json: book, status: 200
       else
         render nothing: true, status: 404
       end
