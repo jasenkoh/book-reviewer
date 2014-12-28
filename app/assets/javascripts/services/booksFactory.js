@@ -1,32 +1,33 @@
 (function () {
-  var booksFactory = function($resource, $state, $location) {
+  var BASE_API_URL = '/api/books/';
+  var booksFactory = function($resource) {
     var factory = {};
 
     factory.getBooks = function() {
-      return $resource('/api/books').query();
+      return $resource(BASE_API_URL).query();
     };
 
     factory.getBook = function(bookId) {
-      return $resource('/api/books/' + bookId).get();
+      return $resource(BASE_API_URL + bookId).get();
     };
 
     factory.updateBook =  function(book) {
-      return $resource('/api/books/' + book.id, null, { 'update': {
+      return $resource(BASE_API_URL + book.id, null, { 'update': {
         method: 'PUT'
       }}).update(book).$promise;
     };
 
     factory.saveBook = function(book) {
-      return $resource('/api/books').save(book).$promise;
+      return $resource(BASE_API_URL).save(book).$promise;
     };
 
     factory.deleteBook = function(bookId) {
-      return $resource('/api/books/' + bookId).delete().$promise;
+      return $resource(BASE_API_URL + bookId).delete().$promise;
     }
 
     return factory;
   };
 
-  booksFactory.$inject = ['$resource', '$state', '$location'];
+  booksFactory.$inject = ['$resource'];
   angular.module('bookApp').factory('booksFactory', booksFactory);
 }());

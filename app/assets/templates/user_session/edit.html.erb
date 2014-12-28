@@ -13,9 +13,7 @@
   </div>
   <div class="form-group">
       <label for="name">I am a:</label>
-      <select class="form-control">
-        <option>Writer</option>
-        <option>Reviewer</option>
+      <select class="form-control" ng-options="type.id as type.type for type in userTypes" ng-model="user.user_type_id">
       </select>
   </div>
   <button type="submit" class="btn btn-primary">Save</button>

@@ -1,5 +1,12 @@
 (function() {
-  var UserRegistrationCtrl = function($scope, $auth, $state) {
+  var UserRegistrationCtrl = function($scope, $auth, $state, userTypes) {
+    $scope.userTypes = userTypes;
+
+    $scope.submitRegistration = function (user) {
+      user.user_type_id = $scope.user_type;
+      $auth.submitRegistration(user);
+    }
+
     $scope.$on('auth:registration-email-success', function(ev, message) {
       alert("A registration email was sent to " + message.email);
       $state.go('books.list');
@@ -11,6 +18,6 @@
     });
   };
 
-  UserRegistrationCtrl.$inject = ['$scope', '$auth', '$state'];
+  UserRegistrationCtrl.$inject = ['$scope', '$auth', '$state', 'userTypes'];
   angular.module('bookApp').controller('UserRegistrationCtrl', UserRegistrationCtrl);
 }());

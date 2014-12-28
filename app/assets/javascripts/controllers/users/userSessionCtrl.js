@@ -1,5 +1,6 @@
 (function() {
-  var UserSessionCtrl = function($scope, $state, $auth) {
+  var UserSessionCtrl = function($scope, $state, $auth, userTypes) {
+    $scope.userTypes = userTypes;
     $scope.updateAccount = function(user) {
       $auth.updateAccount(user);
     };
@@ -27,7 +28,7 @@
     });
   }
 
-  UserSessionCtrl.$inject = ['$scope', '$state', '$auth'];
+  UserSessionCtrl.$inject = ['$scope', '$state', '$auth', 'userTypes'];
 
   angular.module('bookApp').controller('UserSessionCtrl', UserSessionCtrl);
 }());

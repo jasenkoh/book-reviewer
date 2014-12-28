@@ -6,6 +6,13 @@
 
   <label for="password_confirmation" class="sr-only">Password Confirmation</label>
   <input type="password" name="password_confirmation" id="password_confirmation" ng-model="registrationForm.password_confirmation" required="required" class="form-control" placeholder="Password confirmation">
+
+  <div class="form-group">
+      <label for="name">I am a:</label>
+      <select class="form-control" ng-options="type.id as type.type for type in userTypes" ng-model="user_type">
+      </select>
+  </div>
+
   <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
   <br />
