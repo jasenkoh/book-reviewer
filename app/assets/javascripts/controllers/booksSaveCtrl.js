@@ -1,23 +1,20 @@
 (function () {
-  var BooksSaveCtrl = function($scope, genresFactory, booksFactory, $routeParams, $location) {
-    $scope.book = {};
-    $scope.genres = genresFactory.getGenres();
-
-    if ($routeParams.id != undefined) {
-      booksFactory.getBook($routeParams.id).$promise.then(function(book) {
-        $scope.book = book;
-        $scope.message = "Edit " + book.title;
-        $scope.showDeleteButton = true;
-      }, function (error) {
-        if (error.status == 404) {
-          $location.path('/');
-        };
-      });
-    };
+  var BooksSaveCtrl = function($scope, genres, book, booksFactory, $routeParams, $state) {
+    $scope.book = book;
+    $scope.genres = genres;
 
     $scope.message = "Create new review";
     $scope.showSuccess = false;
     $scope.showDeleteButton = false;
+
+    if ($state.current.name == 'books.edit') {
+      book.$promise.then(function (response) {
+        $scope.message = "Edit book";
+        $scope.showDeleteButton = true;
+      }, function(error) {
+        $state.go('books.list');
+      });
+    };
 
     $scope.saveReview = function() {
       $scope.book.genre_ids = [];
@@ -35,15 +32,17 @@
           });
       } else {
         response = booksFactory.saveBook($scope.book).then(function(book) {
-        $location.path('/books/edit/' + book.id);
-      });
+          $state.go('books.edit', {
+            id: book.id
+          });
+        });
       };
     };
 
     $scope.deleteBook = function(book) {
       booksFactory.deleteBook(book.id).then(function(response) {
         if (response.$resolved) {
-          $location.path('/');
+          $state.go('books.list');
         };
       }, function (error) {
         console.log(error);
@@ -51,6 +50,6 @@
     };
   };
 
-  BooksSaveCtrl.$inject = ['$scope', 'genresFactory', 'booksFactory', '$routeParams', '$location'];
+  BooksSaveCtrl.$inject = ['$scope', 'genres', 'book', 'booksFactory', '$routeParams', '$state'];
   angular.module('bookApp').controller('BooksSaveCtrl', BooksSaveCtrl);
 }());

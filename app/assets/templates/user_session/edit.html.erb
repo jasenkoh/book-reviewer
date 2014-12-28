@@ -1,0 +1,22 @@
+<form ng-submit="updateAccount(user)" role="form" style="width:300px">
+  <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+  </div>
+  <div class="form-group">
+      <label for="name">Full name</label>
+      <input type="text" class="form-control" id="name" placeholder="Full name" ng-model="user.name">
+  </div>
+  <div class="form-group">
+      <label for="nickname">Nickname</label>
+      <input type="text" class="form-control" id="nickname" placeholder="Nickname" ng-model="user.nickname">
+  </div>
+  <div class="form-group">
+      <label for="name">I am a:</label>
+      <select class="form-control">
+        <option>Writer</option>
+        <option>Reviewer</option>
+      </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

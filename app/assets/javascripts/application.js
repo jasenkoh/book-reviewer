@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require angular
 //= require angular-route
+//= require angular-cookies
 //= require angular-resource
 //= require angular-rails-templates
 //= require_tree ../templates

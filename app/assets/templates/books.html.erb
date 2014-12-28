@@ -1,5 +1,5 @@
 <div class="col-md-8">
-  <a href="#/books/new" class="btn btn-primary">{{ review }}</a>
+  <a ng-if="user.id" ui-sref='books.new' class="btn btn-primary">{{ review }}</a>
   <hr />
 
   <ul class="list-unstyled col-sm-8">
@@ -7,8 +7,8 @@
       <book-cover></book-cover>
       <div class="col-sm-9">
         <h3><a href="http://www.amazon.com/gp/product/{{book.isbn}}">{{book.title}}</a>
-          <a href="#/books/edit/{{book.id}}">
-            <span style="font-size:16px; color:black;" class="glyphicon glyphicon-pencil"></span>
+          <a ui-sref="books.edit({ id: book.id })">
+            <span style="font-size:16px; color:black;" ng-show="user.id" class="glyphicon glyphicon-pencil"></span>
           </a>
         </h3>
         <cite class="text-muted">Written by {{book.author}}</cite>

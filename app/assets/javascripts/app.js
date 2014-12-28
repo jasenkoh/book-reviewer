@@ -3,29 +3,83 @@
     'ngResource',
     'ui.router',
     'templates',
-    'checklist-model']);
+    'ngCookies',
+    'checklist-model',
+    'ng-token-auth']);
 
-  app.config(function ($routeProvider) {
-    $routeProvider.when('/', {
-        controller: 'BooksCtrl',
-        templateUrl: 'books.html'
-      })
-      .when('/authors', {
-        controller: 'AuthorsCtrl',
-        templateUrl: 'authors.html'
-      })
+  app.config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/');
 
-      .when('/books/new', {
-        controller: 'BooksSaveCtrl',
-        templateUrl: 'book-save.html'
-      })
+    $stateProvider
+    .state('books', {
+      url: '/',
+      abstract: true,
+      template: '<div ui-view></div>'
+    })
 
-      .when('/books/edit/:id', {
-        controller: 'BooksSaveCtrl',
-        templateUrl: 'book-save.html'
-      })
-      .otherwise({ redirectTo: '/' });
-      })
+    .state('books.list', {
+      url: '',
+      controller: 'BooksCtrl',
+      templateUrl: 'books.html',
+      resolve: {
+        books: ['booksFactory', function(booksFactory) {
+          return booksFactory.getBooks();
+        }]
+      }
+    })
+
+    .state('books.new', {
+      url: 'books/new',
+      controller: 'BooksSaveCtrl',
+      templateUrl: 'book-save.html',
+      resolve: {
+        genres: ['genresFactory', function(genresFactory) {
+          return genresFactory.getGenres();
+        }],
+        book: [function() {
+          return {};
+        }]
+      }
+    })
+
+    .state('books.edit', {
+      url: 'books/edit/:id',
+      controller: 'BooksSaveCtrl',
+      templateUrl: 'book-save.html',
+      resolve: {
+        genres: ['genresFactory', function(genresFactory) {
+          return genresFactory.getGenres();
+        }],
+        book: ['booksFactory', '$stateParams', function(booksFactory, $stateParams) {
+          return booksFactory.getBook($stateParams.id);
+        }]
+      }
+    })
+
+    .state('users', {
+      url: '/users',
+      abstract: true,
+      template: '<div ui-view></div>'
+    })
+
+    .state('users.sign-in', {
+      url: '/sign-in',
+      templateUrl: 'user_session/new.html',
+      controller: 'UserSessionCtrl'
+    })
+
+    .state('users.register', {
+      url: '/register',
+      templateUrl: 'user_registration/new.html',
+      controller: 'UserRegistrationCtrl'
+    })
+
+    .state('users.edit', {
+      url: '/edit',
+      templateUrl: 'user_session/edit.html',
+      controller: 'UserSessionCtrl'
+    })
+  })
 
   .directive('bookCover', function () {
     return {
@@ -41,6 +95,14 @@
       scope: {
         genres: '='
       }
+    }
+  })
+  .directive('authorisationErrors', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'authorisation-errors.html',
+      transclude: false,
+      scope: false
     }
   });
 }());

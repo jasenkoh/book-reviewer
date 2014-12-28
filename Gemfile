@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'mailcatcher'
 end
 
 gem "active_model_serializers", github: "rails-api/active_model_serializers", branch: "0-8-stable"
@@ -45,9 +46,16 @@ gem 'byebug', group: [:development, :test]
 gem 'rails_12factor', group: :production
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
+gem "font-awesome-rails"
 
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem 'angular_rails_csrf'
+
+gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'figaro'
+gem 'devise_token_auth'
+
 ruby "2.1.5"

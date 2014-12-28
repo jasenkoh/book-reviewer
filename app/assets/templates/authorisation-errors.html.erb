@@ -1,0 +1,15 @@
+<div class="alert alert-info alert-info" role="alert" ng-if="errorsCount">
+  <strong>
+    <ng-pluralize count="errorsCount"
+              when="{'0': 'All good.',
+                     'one': 'Please fix following error.',
+                     'other': 'Please fix following errors.'}">
+    </ng-pluralize>
+  </strong>
+
+  <ul>
+    <li ng-repeat="error in authErrors">
+      {{ error }}
+    </li>
+  </ul>
+</div>
