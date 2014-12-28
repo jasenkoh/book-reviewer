@@ -33,6 +33,9 @@
       controller: 'BooksSaveCtrl',
       templateUrl: 'book-save.html',
       resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        },
         genres: ['genresFactory', function(genresFactory) {
           return genresFactory.getGenres();
         }],
@@ -47,6 +50,9 @@
       controller: 'BooksSaveCtrl',
       templateUrl: 'book-save.html',
       resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        },
         genres: ['genresFactory', function(genresFactory) {
           return genresFactory.getGenres();
         }],
@@ -77,7 +83,12 @@
     .state('users.edit', {
       url: '/edit',
       templateUrl: 'user_session/edit.html',
-      controller: 'UserSessionCtrl'
+      controller: 'UserSessionCtrl',
+      resolve: {
+        auth: function($auth) {
+          return $auth.validateUser();
+        }
+      }
     })
   })
 
