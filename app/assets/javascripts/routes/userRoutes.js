@@ -1,0 +1,30 @@
+'use strict'
+
+angular.module('bookApp').config(function($stateProvider) {
+  $stateProvider
+  .state('users', {
+    url: '/users',
+    abstract: true,
+    template: '<div ui-view></div>'
+  })
+  .state('users.sign-in', {
+    url: '/sign-in',
+    templateUrl: 'user_session/new.html',
+    controller: 'UserSessionCtrl'
+  })
+  .state('users.register', {
+    url: '/register',
+    templateUrl: 'user_registration/new.html',
+    controller: 'UserRegistrationCtrl'
+  })
+  .state('users.edit', {
+    url: '/edit',
+    templateUrl: 'user_session/edit.html',
+    controller: 'UserSessionCtrl',
+    resolve: {
+      auth: function($auth) {
+        return $auth.validateUser();
+      }
+    }
+  });
+});

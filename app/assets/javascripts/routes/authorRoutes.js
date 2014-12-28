@@ -5,5 +5,5 @@ angular.module('bookApp').config(function($stateProvider){
       url: '/authors',
       controller: 'AuthorsCtrl',
       templateUrl: 'authors.html'
-    })
-})
+    });
+});

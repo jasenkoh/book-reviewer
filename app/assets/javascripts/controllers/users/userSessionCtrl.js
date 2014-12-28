@@ -17,7 +17,6 @@
     });
 
     $scope.$on('auth:login-error', function(ev, reason) {
-      console.log(reason.errors);
       $scope.authErrors = reason.errors;
       $scope.errorsCount = $scope.authErrors.length;
     });
