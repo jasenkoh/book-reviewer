@@ -1,7 +1,7 @@
 class SetUserTypeToNotNull < ActiveRecord::Migration
   def up
-    UserTypes.create!(type: 'Reviewer')
-    UserTypes.create!(type: 'Author')
+    UserType.create!(type: 'Reviewer')
+    UserType.create!(type: 'Author')
 
     User.all.each do |user|
       user.user_type_id = UserTypes.first.id
