@@ -1,11 +1,19 @@
 (function() {
   var UserSessionCtrl = function($scope, $state, $auth, userTypes) {
     $scope.userTypes = userTypes;
+    $scope.showSuccess = false;
+
     $scope.updateAccount = function(user) {
       $auth.updateAccount(user);
     };
 
+    $scope.$on('auth:account-update-success', function(ev) {
+      $scope.showSuccess = true;
+      $scope.successMessage = "Profile updated";
+    });
+
     $scope.$on('auth:account-update-error', function(ev, reason) {
+      $scope.showSuccess = false;
       if (reason.errors.email) {
         $scope.authErrors = [];
         $scope.authErrors.push("Email already taken");

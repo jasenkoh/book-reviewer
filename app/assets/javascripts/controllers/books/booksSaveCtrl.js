@@ -26,8 +26,10 @@
       if ($scope.book.id != undefined) {
         response = booksFactory.updateBook($scope.book).then(function(book) {
             $scope.showSuccess = true;
+            $scope.showError = false;
             $scope.successMessage = "You have saved book " + book.title + " successfully";
           }, function (error) {
+            $scope.showSuccess = false;
             $scope.showError = true;
           });
       } else {

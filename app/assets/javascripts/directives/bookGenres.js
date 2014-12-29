@@ -2,7 +2,7 @@
   var directive = function() {
     return {
       restrict: 'E',
-      templateUrl: 'book-genres.html',
+      templateUrl: 'directives/book-genres.html',
       scope: {
         genres: '='
       }

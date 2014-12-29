@@ -1,21 +1,33 @@
-<form ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}" class="form-signin">
-  <label for="email" class="sr-only">Email address</label>
-  <input type="email" name="email" id="email" ng-model="registrationForm.email" required="required" class="form-control" class="form-control" placeholder="Email address" required autofocus>
-  <label for="password" class="sr-only">Password</label>
-  <input type="password" id="password" style="border-radius:0px;" class="form-control" ng-model="registrationForm.password" placeholder="Password" required>
+<div class="clear-form">
+  <form ng-submit="submitRegistration(registrationForm)" role="form" ng-init="registrationForm = {}">
+    <div class="form-heading gray">
+        <h3 class="header center">Create an account</h3>
+    </div>
+    <div class="form-body">
+      <div class="form-signin">
+        <label for="email" class="sr-only">Email address</label>
+        <input type="email" name="email" id="email" ng-model="registrationForm.email" required="required" class="form-control" class="form-control" placeholder="Email address" required autofocus>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" style="border-radius:0px;" class="form-control" ng-model="registrationForm.password" placeholder="Password" required>
 
-  <label for="password_confirmation" class="sr-only">Password Confirmation</label>
-  <input type="password" name="password_confirmation" id="password_confirmation" ng-model="registrationForm.password_confirmation" required="required" class="form-control" placeholder="Password confirmation">
+        <label for="password_confirmation" class="sr-only">Password Confirmation</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" ng-model="registrationForm.password_confirmation" required="required" class="form-control" placeholder="Password confirmation">
 
-  <div class="form-group">
-      <label for="name">I am a:</label>
-      <select class="form-control" ng-options="type.id as type.type for type in userTypes" ng-model="user_type">
-      </select>
-  </div>
+        <div class="form-group">
+            <label for="name">I am a:</label>
+            <select class="form-control" ng-options="type.id as type.type for type in userTypes" ng-model="user_type" required>
+            </select>
+        </div>
+      </div>
+    </div>
 
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <div class="form-footer">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
 
-  <br />
-  <authorisation-errors></authorisation-errors>
-</form>
-<p class="text-center"><a ui-sref="users.sign-in">Have an account? Sign in</a></p>
+    <br />
+    <authorisation-errors></authorisation-errors>
+    </div>
+  </form>
+  <p class="text-center">Have an account? <a ui-sref="users.sign-in">Sign in</a></p>
+</div>
+

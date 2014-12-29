@@ -2,11 +2,11 @@
   var directive = function() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/authorisation-errors.html',
+      templateUrl: 'directives/error-alert.html',
       transclude: false,
       scope: false
     };
   };
 
-  angular.module('bookApp').directive('authorisationErrors', directive);
+  angular.module('bookApp').directive('errorAlert', directive);
 }());

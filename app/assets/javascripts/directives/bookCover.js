@@ -2,7 +2,7 @@
   var directive = function() {
     return {
       restrict: 'E',
-      templateUrl: 'book-cover.html',
+      templateUrl: 'directives/book-cover.html',
       replace: true
     };
   };
