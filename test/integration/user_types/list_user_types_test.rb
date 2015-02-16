@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class ListUserTypesTest < ActionDispatch::IntegrationTest
+  setup do
+    @reviewer = UserType.create!(type: 'Reviewer')
+    @author = UserType.create!(type: 'Author')
+  end
   test "list user types" do
     get '/api/user_types'
 
