@@ -6,7 +6,7 @@
     <li class="book row" ng-repeat="book in books">
       <book-cover></book-cover>
       <div class="col-sm-9">
-        <h3><a href="http://www.amazon.com/gp/product/{{book.isbn}}">{{book.title}}</a>
+        <h3><a href="http://www.amazon.com/gp/product/{{book.amazon_id}}">{{book.title}}</a>
           <a ui-sref="books.edit({ id: book.id })">
             <span style="font-size:16px; color:black;" ng-show="user.id" class="glyphicon glyphicon-pencil"></span>
           </a>

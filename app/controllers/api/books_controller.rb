@@ -29,7 +29,7 @@ module Api
     def update
       book = Book.find_by_id(params[:id])
       if book
-        book.update_attributes(book_params);
+        book.update_attributes(book_params)
         render json: book, status: 200
       else
         render nothing: true, status: 404

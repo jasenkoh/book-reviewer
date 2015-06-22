@@ -1,5 +1,9 @@
 Genre.destroy_all
 
+if UserType.all.length == 0
+  UserType.create!(type: 'Reviewer')
+  UserType.create!(type: 'Author')
+end
 genre_attrs = [{
   name: 'Science Fiction'
 },
